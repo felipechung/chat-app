@@ -10,6 +10,7 @@ function App() {
     <div className="App">
       <Switch>
         <Route exact path="/" component={HomePage} />
+        <Route path="/:id" component={ChatBox} />
       </Switch>
     </div>
   );

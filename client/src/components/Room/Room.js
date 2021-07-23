@@ -7,10 +7,10 @@ function Room(props) {
     <>
       <Link to={`/${props.roomId}`} className="room">
         <div className="room-name-container">
-          <span class="room-name">Sala secreta</span>
+          <span class="room-name">{props.name}</span>
         </div>
         <div className="room-description-container">
-          <span class="room-description">Essa eh uma sala secreta</span>
+          <span class="room-description">{props.description}</span>
         </div>
       </Link>
     </>

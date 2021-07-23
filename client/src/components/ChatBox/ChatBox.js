@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "./ChatBox.scss";
 import * as FaIcons from "react-icons/fa";
 
 function ChatBox() {
+  const [message, setMessage] = useState("");
+  const [messageList, setMessageList] = useState([]);
+
   return (
     <div className="container">
       <div className="chatbox">

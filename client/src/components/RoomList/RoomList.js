@@ -16,6 +16,12 @@ export default function RoomList() {
       description:
         "diodsadassajdoi dijasaaaaaaa aod odisjzzzzzzzzzzzzzzzzziasjd ",
     },
+    {
+      id: 3,
+      name: "Sala dasdsadsadaas",
+      description:
+        "diodsadassajdoi dijasewqewqewqewqaaaaaaa aod odisjzzzzzzzzzzzzzzzzziasjd ",
+    },
   ]);
   return (
     <div className="rooms">
