@@ -1,0 +1,247 @@
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700");
+
+$font: "Lato", sans-serif;
+
+$primary: #476072; //79c7c5
+$secondary: #548ca8; //a1e2d9
+$white: #eeeeee; //f9fbff
+$dark: #334257; //777777
+
+body {
+  display: grid;
+  background: $primary;
+  font-family: $font;
+}
+
+.container {
+  position: relative;
+  margin: 10% auto;
+  width: 620px;
+  height: 450px;
+}
+
+.messages {
+  position: absolute;
+  background: $white;
+  opacity: 0.5;
+  width: 30%;
+  height: 70%;
+  top: 2.5%;
+  left: 5%;
+  border-radius: 10px 0 0 10px;
+  box-shadow: -5px 5px 10px rgba($dark, 0.5);
+}
+
+.focus {
+  background: $white;
+  margin-left: 1px;
+}
+
+.profile {
+  position: absolute;
+  left: 16%;
+  top: 7%;
+}
+
+.chatbox {
+  position: absolute;
+  left: 25%;
+  height: 75%;
+  width: 60%;
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px rgba($dark, 0.5);
+}
+
+.top-bar {
+  width: 100%;
+  height: 60px;
+  background: $white;
+  border-radius: 10px 10px 0 0;
+}
+
+.avatar {
+  width: 35px;
+  height: 35px;
+  background: linear-gradient(to bottom left, $primary 20%, $secondary 100%);
+  border-radius: 50%;
+  position: absolute;
+  top: 11px;
+  left: 15px;
+  p {
+    color: $white;
+    margin: 7px 12px;
+  }
+}
+
+.name {
+  position: absolute;
+  top: 22px;
+  text-transform: uppercase;
+  color: $dark;
+  font-size: 0.8em;
+  letter-spacing: 2px;
+  font-weight: 500;
+  left: 60px;
+}
+
+.menu {
+  position: absolute;
+  right: 10px;
+  top: 20px;
+  width: 10px;
+  height: 20px;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.1);
+    transition: all 0.3s ease-in;
+  }
+}
+
+.dots {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: $primary;
+  box-shadow: 0px 7px 0px $primary, 0px 14px 0px $primary;
+}
+
+.middle {
+  position: absolute;
+  background: $white;
+  width: 100%;
+  opacity: 0.85;
+  top: 60px;
+  height: 80%;
+}
+
+.incoming {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  padding: 20px;
+  .bubble {
+    background: $dark;
+  }
+}
+
+.typing {
+  position: absolute;
+  top: 67%;
+  left: 20px;
+  .bubble {
+    background: lighten($dark, 45%);
+    padding: 8px 13px 9px 13px;
+  }
+}
+
+.ellipsis {
+  width: 5px;
+  height: 5px;
+  display: inline-block;
+  background: lighten($dark, 25%);
+  border-radius: 50%;
+  animation: bounce 1.3s linear infinite;
+}
+
+.one {
+  animation-delay: 0.6s;
+}
+.two {
+  animation-delay: 0.5s;
+}
+.three {
+  animation-delay: 0.8s;
+}
+
+.bubble {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 5px;
+  color: $white;
+  font-size: 0.7em;
+  padding: 10px 10px 10px 12px;
+  border-radius: 20px;
+}
+
+.lower {
+  margin-top: 45px;
+}
+
+.outgoing {
+  position: absolute;
+  padding: 20px;
+  right: 0;
+  top: 15%;
+  width: 50%;
+  height: 100%;
+  .bubble {
+    background: $primary;
+    float: right;
+  }
+}
+
+.bottom-bar {
+  position: absolute;
+  width: 100%;
+  height: 55px;
+  bottom: 0;
+  background: $white;
+  border-radius: 0 0 10px 10px;
+}
+
+.left {
+  left: 0px;
+}
+
+input {
+  padding: 7px;
+  width: 74%;
+  left: 5%;
+  position: absolute;
+  border: 0;
+  top: 13px;
+  background: $white;
+  color: $primary;
+}
+
+input::placeholder {
+  color: $secondary;
+}
+
+input:focus {
+  color: $dark;
+  outline: 0;
+}
+
+button {
+  position: absolute;
+  border: 0;
+  font-size: 1em;
+  color: $secondary;
+  top: 19px;
+  opacity: 0.8;
+  right: 17px;
+  cursor: pointer;
+  outline: 0;
+  &:hover {
+    transform: scale(1.1);
+    transition: all 0.3s ease-in-out;
+    color: $primary;
+  }
+}
+
+@keyframes bounce {
+  30% {
+    transform: translateY(-2px);
+  }
+  60% {
+    transform: translateY(0px);
+  }
+  80% {
+    transform: translateY(2px);
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 0.5;
+  }
+}
