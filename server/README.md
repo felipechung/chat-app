@@ -7,7 +7,7 @@ python3 -m venv venv
 ### Activate Virtual Environment
 
 . venv/bin/activate (Linux)
-venv/Scripts/activate.bat (Windows)
+venv\Scripts\activate.bat (Windows)
 
 #### Install Requirements
 
