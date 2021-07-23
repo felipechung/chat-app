@@ -2,16 +2,10 @@
 
 $font: "Lato", sans-serif;
 
-$primary: #476072; //79c7c5
-$secondary: #548ca8; //a1e2d9
-$white: #eeeeee; //f9fbff
-$dark: #334257; //777777
-
-body {
-  display: grid;
-  background: $primary;
-  font-family: $font;
-}
+$primary: #476072;
+$secondary: #548ca8;
+$white: #eeeeee;
+$dark: #334257;
 
 .container {
   position: relative;
@@ -193,7 +187,7 @@ body {
   left: 0px;
 }
 
-input {
+.chat-input {
   padding: 7px;
   width: 74%;
   left: 5%;
@@ -204,16 +198,16 @@ input {
   color: $primary;
 }
 
-input::placeholder {
+.chat-input::placeholder {
   color: $secondary;
 }
 
-input:focus {
+.chat-input:focus {
   color: $dark;
   outline: 0;
 }
 
-button {
+.chat-button {
   position: absolute;
   border: 0;
   font-size: 1em;

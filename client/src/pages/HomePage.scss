@@ -1,0 +1,37 @@
+$font: "Lato", sans-serif;
+
+$primary: #476072;
+$secondary: #548ca8;
+$white: #eeeeee;
+$dark: #334257;
+
+.rooms {
+  display: flex;
+  flex-direction: column;
+}
+
+.room {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+
+  background-color: lighten($dark, 50%);
+  margin-bottom: 15px;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  &:hover {
+    background: $white;
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+.room-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.room-description {
+  color: #548ca8;
+  font-size: 0.8rem;
+}

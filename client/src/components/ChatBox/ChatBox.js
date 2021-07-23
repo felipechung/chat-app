@@ -44,8 +44,12 @@ function ChatBox() {
 
         <div className="bottom-bar">
           <div className="chat">
-            <input type="text" placeholder="Type a message" />
-            <button type="submit">
+            <input
+              className="chat-input"
+              type="text"
+              placeholder="Type a message"
+            />
+            <button className="chat-button" type="submit">
               <FaIcons.FaTelegramPlane className="fas fa-paper-plane"></FaIcons.FaTelegramPlane>
             </button>
           </div>

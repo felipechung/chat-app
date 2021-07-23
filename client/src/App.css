@@ -1,5 +1,20 @@
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.App {
+  display: grid;
+  background: #476072;
+  font-family: "Lato", sans-serif;
+  place-items: center;
+  height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }
