@@ -1,37 +1,47 @@
-from django.shortcuts import render
-from django.urls import reverse_lazy
-from django.http import HttpResponse,JsonResponse
-from django.views.generic import (View,TemplateView,
-                                ListView,DetailView,
-                                CreateView,DeleteView,
-                                UpdateView)
-from .models import Room
-from . import models
-
-
-# Create your views here.
+from django.http import JsonResponse, HttpResponseRedirect
+from django.urls import reverse
+from chat.models import Room
+from django.forms.models import model_to_dict
 
 
 def room_list_view(request):
-    rooms = Room.objects.all().values('id', 'name', 'description')  # or simply .values() to get all fields
-    room_list = list(rooms)  # important: convert the QuerySet to a list object
-    return JsonResponse(room_list, safe=False)
-    # https://simpleisbetterthancomplex.com/tutorial/2016/07/27/how-to-return-json-encoded-response.html
+
+    if request.method == 'GET':
+
+        rooms = Room.objects.all().values('id', 'name')
+        room_list = list(rooms)
+
+        return JsonResponse(room_list, safe=False)
+
+    elif request.method == 'POST':
+
+        name = request.POST.get('name', 'gays room')
+        description = request.POST.get('description', 'only gays allowed')
+        private = request.POST.get('private', '')
+        password = request.POST.get('password', '1234')
+
+        room = Room.objects.create(
+            name=name,
+            description=description,
+            private=private,
+            password=password,
+        )
+        new_room = model_to_dict(room)
+
+        return JsonResponse(new_room, safe=False)
+        
+
+def room_detail_view(request,id):
+
+    if request.method == 'DELETE':
+
+        delete_room = Room.objects.filter(id=id).delete()
+        return HttpResponseRedirect(reverse('index'))
 
 
-# class RoomListView(ListView):
-#     context_object_name = 'rooms'
-#     model = models.Room
-    # template_name = 'chat/index.html'
-    
+    else:
+        room = Room.objects.get(id=id)
+        room_detail = model_to_dict(room)
 
-class RoomCreateView(CreateView):
-    fields = ("name","description")
-    model = models.Room
+        return JsonResponse(room_detail, safe=False)
 
-
-class RoomDeleteView(DeleteView):
-    model = models.Room
-    success_url = reverse_lazy("chat:list")
-
-    
