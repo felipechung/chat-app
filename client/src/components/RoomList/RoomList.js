@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./RoomList.scss";
 import Room from "../Room/Room";
+import api from "../../services/api";
 
 export default function RoomList() {
   const [rooms, setRooms] = useState([
@@ -23,6 +24,15 @@ export default function RoomList() {
         "diodsadassajdoi dijasewqewqewqewqaaaaaaa aod odisjzzzzzzzzzzzzzzzzziasjd ",
     },
   ]);
+
+  useEffect(() => {
+    api
+      .get("")
+      .then((response) => setRooms(response.data))
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
   return (
     <div className="rooms">
       {rooms.map((room) => (
