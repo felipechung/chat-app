@@ -4,7 +4,7 @@ from . import views
 app_name = 'chat'
 
 urlpatterns = [
-    path('',views.room_list_view.as_view(),name='list'),
+    path('', views.room_list_view, name='list'),
     path('create/',views.RoomCreateView.as_view(),name='create'),
     path('delete/<int:pk>/',views.RoomDeleteView.as_view(),name='delete')
 ]

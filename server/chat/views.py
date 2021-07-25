@@ -13,7 +13,7 @@ from . import models
 
 
 def room_list_view(request):
-    rooms = Room.objects.all().values('name')  # or simply .values() to get all fields
+    rooms = Room.objects.all().values('id', 'name', 'description')  # or simply .values() to get all fields
     room_list = list(rooms)  # important: convert the QuerySet to a list object
     return JsonResponse(room_list, safe=False)
     # https://simpleisbetterthancomplex.com/tutorial/2016/07/27/how-to-return-json-encoded-response.html
