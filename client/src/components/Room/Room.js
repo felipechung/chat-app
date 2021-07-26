@@ -10,7 +10,7 @@ function Room(props) {
           <span class="room-name">{props.name}</span>
         </div>
         <div className="room-description-container">
-          <span class="room-description">{props.description}</span>
+          <span className="room-description">{props.description}</span>
         </div>
       </Link>
     </>
