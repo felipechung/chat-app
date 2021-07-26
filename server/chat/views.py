@@ -1,9 +1,9 @@
-from django.http import JsonResponse, HttpResponseRedirect
-from django.urls import reverse
+from django.http import JsonResponse
 from chat.models import Room
 from django.forms.models import model_to_dict
+from django.views.decorators.csrf import csrf_exempt
 
-
+@csrf_exempt
 def room_list_view(request):
 
     if request.method == 'GET':
@@ -17,7 +17,7 @@ def room_list_view(request):
 
         name = request.POST.get('name', 'gays room')
         description = request.POST.get('description', 'only gays allowed')
-        private = request.POST.get('private', '')
+        private = request.POST.get('private', '')=='true'
         password = request.POST.get('password', '1234')
 
         room = Room.objects.create(
@@ -30,18 +30,21 @@ def room_list_view(request):
 
         return JsonResponse(new_room, safe=False)
         
-
+@csrf_exempt
 def room_detail_view(request,id):
 
     if request.method == 'DELETE':
 
         delete_room = Room.objects.filter(id=id).delete()
-        return HttpResponseRedirect(reverse('index'))
+        return JsonResponse({})
 
 
     else:
-        room = Room.objects.get(id=id)
-        room_detail = model_to_dict(room)
+        room = Room.objects.filter(id=id).first()
+        if room:
+            room_detail = model_to_dict(room)
+        else:
+            room_detail={}
 
         return JsonResponse(room_detail, safe=False)
 
