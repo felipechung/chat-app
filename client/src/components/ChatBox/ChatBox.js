@@ -30,6 +30,11 @@ function ChatBox() {
   }, []);
 
   function handleChangeMessage(event) {
+    // Prevent whitespace at the beginning of input
+    if (event.target.value === " ") {
+      event.target.value = event.target.value.replace(/\s/g, "");
+    }
+
     setMessage(event.target.value);
   }
 
