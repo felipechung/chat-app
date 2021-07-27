@@ -5,11 +5,18 @@ import api from "../../services/api";
 import { useParams } from "react-router-dom";
 
 function ChatBox() {
-  const [message, setMessage] = useState("");
-  const [messageList, setMessageList] = useState([]);
-  const [room, setRoom] = useState({});
-
   const { id } = useParams();
+  const [message, setMessage] = useState(null);
+  const [messageList, setMessageList] = useState([
+    {
+      key: id,
+      room: id,
+      content: {
+        message: "",
+      },
+    },
+  ]);
+  const [room, setRoom] = useState({});
 
   useEffect(() => {
     api
@@ -21,6 +28,21 @@ function ChatBox() {
         console.log(error);
       });
   }, []);
+
+  function handleChangeMessage(event) {
+    setMessage(event.target.value);
+  }
+
+  function handleSendMessage(event) {
+    event.preventDefault();
+    setMessageList({
+      room: id,
+      content: {
+        message: message,
+      },
+    });
+    console.log(message);
+  }
 
   return (
     <div className="container">
@@ -38,12 +60,17 @@ function ChatBox() {
 
         <div className="middle">
           <div className="chat">
-            <div className="incoming">
+            {messageList.map((msg) => (
+              <div className="incoming">
+                <div className="bubble">{msg.content.message}</div>
+              </div>
+            ))}
+            {/* <div className="incoming">
               <div className="bubble">
                 Fala blazer, to com uma verruga na virilha...
               </div>
               <div className="bubble">Tem algum remedio pra recomendar?</div>
-            </div>
+            </div> */}
             <div className="outgoing">
               <div className="bubble lower">Tenho sim</div>
               <div className="bubble">
@@ -63,14 +90,17 @@ function ChatBox() {
 
         <div className="bottom-bar">
           <div className="chat">
-            <input
-              className="chat-input"
-              type="text"
-              placeholder="Type a message"
-            />
-            <button className="chat-button" type="submit">
-              <FaIcons.FaTelegramPlane className="fas fa-paper-plane"></FaIcons.FaTelegramPlane>
-            </button>
+            <form onSubmit={handleSendMessage}>
+              <input
+                className="chat-input"
+                type="text"
+                placeholder="Type a message"
+                onChange={handleChangeMessage}
+              />
+              <button className="chat-button" type="submit">
+                <FaIcons.FaTelegramPlane className="fas fa-paper-plane"></FaIcons.FaTelegramPlane>
+              </button>
+            </form>
           </div>
         </div>
       </div>
