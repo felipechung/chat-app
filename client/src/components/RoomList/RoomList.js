@@ -28,22 +28,27 @@ export default function RoomList() {
   useEffect(() => {
     api
       .get("/")
-      .then((response) => setRooms(response.data))
+      .then((response) => {
+        setRooms(response.data);
+      })
       .catch((error) => {
         console.log(error);
       });
   }, []);
+
   return (
-    <div className="rooms">
-      {rooms.map((room) => (
-        <Room
-          name={room.name}
-          description={room.description}
-          roomId={room.id}
-          key={room.id}
-          private={room.private}
-        />
-      ))}
-    </div>
+    <>
+      <div className="rooms">
+        {rooms.map((room) => (
+          <Room
+            name={room.name}
+            description={room.description}
+            roomId={room.id}
+            key={room.id}
+            private={room.private}
+          />
+        ))}
+      </div>
+    </>
   );
 }

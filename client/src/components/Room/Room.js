@@ -1,10 +1,26 @@
-import React from "react";
+import { React, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 // import { Link } from "react-router-dom";
 import * as FaIcons from "react-icons/fa";
+import axios from "axios";
 
 function Room(props) {
-  function handleJoinPrivateRoom() {}
+  function handleJoinPrivateRoom() {
+    const password = prompt("Enter Password");
+    let login = {
+      id: props.roomId,
+      password: password,
+    };
+
+    axios
+      .post("http://02fad2a28f9c.ngrok.io/chat", login)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   return (
     <>

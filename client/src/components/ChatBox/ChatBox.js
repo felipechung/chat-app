@@ -25,37 +25,37 @@ function ChatBox() {
   return (
     <div className="container">
       <div className="chatbox">
-        <div class="top-bar">
-          <div class="avatar">
+        <div className="top-bar">
+          <div className="avatar">
             <p>{room.name ? room.name[0].toUpperCase() : ""}</p>
           </div>
-          <div class="name">{room.name}</div>
+          <div className="name">{room.name}</div>
 
-          <div class="menu">
-            <div class="dots"></div>
+          <div className="menu">
+            <div className="dots"></div>
           </div>
         </div>
 
-        <div class="middle">
-          <div class="chat">
-            <div class="incoming">
-              <div class="bubble">
+        <div className="middle">
+          <div className="chat">
+            <div className="incoming">
+              <div className="bubble">
                 Fala blazer, to com uma verruga na virilha...
               </div>
-              <div class="bubble">Tem algum remedio pra recomendar?</div>
+              <div className="bubble">Tem algum remedio pra recomendar?</div>
             </div>
-            <div class="outgoing">
-              <div class="bubble lower">Tenho sim</div>
-              <div class="bubble">
+            <div className="outgoing">
+              <div className="bubble lower">Tenho sim</div>
+              <div className="bubble">
                 Ouvi falar que saliva eh mto bom pra curar isso, principalmente
                 se for de algum amigo, rs.
               </div>
             </div>
-            <div class="typing">
-              <div class="bubble">
-                <div class="ellipsis one"></div>
-                <div class="ellipsis two"></div>
-                <div class="ellipsis three"></div>
+            <div className="typing">
+              <div className="bubble">
+                <div className="ellipsis one"></div>
+                <div className="ellipsis two"></div>
+                <div className="ellipsis three"></div>
               </div>
             </div>
           </div>
