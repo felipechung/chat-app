@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { Route, Switch } from "react-router-dom";
 import ChatBox from "./components/ChatBox/ChatBox";
-import Login from "./components/Login/Login";
+
 import HomePage from "./pages/HomePage";
 import "./App.css";
 

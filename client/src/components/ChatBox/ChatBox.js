@@ -1,19 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./ChatBox.scss";
 import * as FaIcons from "react-icons/fa";
+import api from "../../services/api";
+import { useParams } from "react-router-dom";
 
 function ChatBox() {
   const [message, setMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
+  const [room, setRoom] = useState({});
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    api
+      .get(`${id}/`)
+      .then((response) => {
+        setRoom(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <div className="container">
       <div className="chatbox">
         <div class="top-bar">
           <div class="avatar">
-            <p>P</p>
+            <p>{room.name ? room.name[0].toUpperCase() : ""}</p>
           </div>
-          <div class="name">PAULETA</div>
+          <div class="name">{room.name}</div>
 
           <div class="menu">
             <div class="dots"></div>

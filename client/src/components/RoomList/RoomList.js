@@ -27,7 +27,7 @@ export default function RoomList() {
 
   useEffect(() => {
     api
-      .get("")
+      .get("/")
       .then((response) => setRooms(response.data))
       .catch((error) => {
         console.log(error);
@@ -40,6 +40,8 @@ export default function RoomList() {
           name={room.name}
           description={room.description}
           roomId={room.id}
+          key={room.id}
+          private={room.private}
         />
       ))}
     </div>

@@ -1,20 +1,40 @@
 import React from "react";
-
-import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import * as FaIcons from "react-icons/fa";
 
 function Room(props) {
+  function handleJoinPrivateRoom() {}
+
   return (
     <>
-      <Link to={`/${props.roomId}`} className="room">
-        <div className="room-name-container">
-          <span class="room-name">{props.name}</span>
-        </div>
-        <div className="room-description-container">
-          <span className="room-description">{props.description}</span>
-        </div>
-      </Link>
+      {props.private ? (
+        <li onClick={handleJoinPrivateRoom} className="room">
+          <div className="room-name-container">
+            <span className="room-name">{props.name}</span>
+            <FaIcons.FaLock />
+          </div>
+          <div className="room-description-container">
+            <span className="room-description">{props.description}</span>
+          </div>
+        </li>
+      ) : (
+        <li
+          onClick={() => {
+            props.history.push(`${props.match.url}${props.roomId}`);
+          }}
+          className="room"
+        >
+          <div className="room-name-container">
+            <span className="room-name">{props.name}</span>
+          </div>
+          <div className="room-description-container">
+            <span className="room-description">{props.description}</span>
+          </div>
+        </li>
+      )}
     </>
   );
 }
 
-export default Room;
+export default withRouter(Room);
