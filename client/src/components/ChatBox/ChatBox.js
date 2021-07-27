@@ -6,15 +6,15 @@ import { useParams } from "react-router-dom";
 
 function ChatBox() {
   const { id } = useParams();
-  const [message, setMessage] = useState(null);
+  const [message, setMessage] = useState("");
   const [messageList, setMessageList] = useState([
-    {
-      key: id,
-      room: id,
-      content: {
-        message: "",
-      },
-    },
+    // {
+    //   key: id,
+    //   room: id,
+    //   content: {
+    //     message: "",
+    //   },
+    // },
   ]);
   const [room, setRoom] = useState({});
 
@@ -35,13 +35,16 @@ function ChatBox() {
 
   function handleSendMessage(event) {
     event.preventDefault();
-    setMessageList({
+
+    const newMessageList = {
       room: id,
       content: {
         message: message,
       },
-    });
-    console.log(message);
+    };
+    const updatedMessageList = [...messageList, newMessageList];
+    setMessageList(updatedMessageList);
+    setMessage("");
   }
 
   return (
@@ -71,13 +74,15 @@ function ChatBox() {
               </div>
               <div className="bubble">Tem algum remedio pra recomendar?</div>
             </div> */}
-            <div className="outgoing">
+
+            {/* NEED TO ADD AUTHOR TO FIX THIS */}
+            {/* <div className="outgoing">
               <div className="bubble lower">Tenho sim</div>
               <div className="bubble">
                 Ouvi falar que saliva eh mto bom pra curar isso, principalmente
                 se for de algum amigo, rs.
               </div>
-            </div>
+            </div> */}
             <div className="typing">
               <div className="bubble">
                 <div className="ellipsis one"></div>
@@ -96,6 +101,7 @@ function ChatBox() {
                 type="text"
                 placeholder="Type a message"
                 onChange={handleChangeMessage}
+                value={message}
               />
               <button className="chat-button" type="submit">
                 <FaIcons.FaTelegramPlane className="fas fa-paper-plane"></FaIcons.FaTelegramPlane>

@@ -100,6 +100,7 @@ $dark: #334257;
 }
 
 .middle {
+  overflow-y: scroll;
   position: absolute;
   background: $white;
   width: 100%;
@@ -109,10 +110,10 @@ $dark: #334257;
 }
 
 .incoming {
-  position: absolute;
+  // position: absolute;
   width: 50%;
   height: 100%;
-  padding: 20px;
+  padding: 5px 10px;
   .bubble {
     background: $dark;
   }
