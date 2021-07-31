@@ -2,6 +2,7 @@ from django.http import JsonResponse
 from chat.models import Room
 from django.forms.models import model_to_dict
 from django.views.decorators.csrf import csrf_exempt
+from django.core.exceptions import ValidationError
 
 @csrf_exempt
 def room_list_view(request):
@@ -43,7 +44,20 @@ def room_detail_view(request,id):
     if request.method == 'DELETE':
 
         delete_room = Room.objects.filter(id=id).delete()
+        
         return JsonResponse({})
+
+
+    elif request.method == 'POST':
+
+        data_password = Room.objects.values('password') # vai retornar um dictionary - data_password = {"password": "12345"}
+        typed_password = request.POST('password') # vai pegar oq o usuario digitou como senha - to com medo dessa porra dar um overwrite na senha inicial
+        password = (data_password["password"])  # pega só o valor do dictionaty data_password
+
+        if typed_password == password:
+            return JsonResponse({'message': 'correct'}, safe=False)
+        else:
+            return JsonResponse({'message': 'wrong password'})
 
 
     else:
@@ -54,4 +68,7 @@ def room_detail_view(request,id):
             room_detail={}
 
         return JsonResponse(room_detail, safe=False)
+
+############################################################################
+
 
